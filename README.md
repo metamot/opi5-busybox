@@ -16,11 +16,15 @@ Check your microSD device:
 
     lsblk
 
+**:: OPI5+** (emmc is istalled vs microSD-card :: both are mmc-subsytem)
+
 lsblk**X**boot**X** - is emmc(!)
 
-For example "mmcblk1, mmcblk1p1, mmcblk1p2, mmcblk1boot0, , mmcblk1boot1". 
+For example "mmcblk1, mmcblk1p1, mmcblk1p2, mmcblk1boot0, mmcblk1boot1". 
 
 If you insert microSD-card then you can see something other like "mmcblk0".
+
+You need to know which device is e
 
 OPI5+ manual:
 
