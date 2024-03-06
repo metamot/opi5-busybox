@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+sudo apt install -y zstd pv dosfstools swig python-dev-is-python3 python3 python3-pyelftools
 mkdir -p clones
 mkdir -p src
 # === Part0: download
