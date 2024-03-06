@@ -268,19 +268,13 @@ dd of=out-opi5plus/mmc.img if=src/uboot-opi5plus/u-boot-rockchip.bin seek=64 con
 dd of=out-opi5plus/mmc.img if=out-opi5plus/mmc-fat.bin seek=20480 conv=notrunc
 /sbin/parted -s out-opi5plus/mmc.img mklabel gpt
 /sbin/parted -s out-opi5plus/mmc.img unit s mkpart bootfs 20480 409599
-
-#mkdir -p mnt
-#dd of=out/mmc-fat.bin if=/dev/zero bs=1M count=0 seek=190
-#/sbin/mkfs.fat -F 32 -n "opi_boot" -i A77ACF93 out/mmc-fat.bin
-#sudo mount out/mmc-fat.bin mnt/
-#sudo cp --force --no-preserve=all --recursive out/fat/* mnt/
-#sudo umount out/mmc-fat.bin
-#rm -fr mnt
-#dd of=out/mmc.img if=/dev/zero bs=1M count=0 seek=201
-#dd of=out/mmc.img if=src/uboot/u-boot-rockchip.bin seek=64 conv=notrunc
-#dd of=out/mmc.img if=out/mmc-fat.bin seek=20480 conv=notrunc
-#/sbin/parted -s out/mmc.img mklabel gpt
-#/sbin/parted -s out/mmc.img unit s mkpart bootfs 20480 409599
 set +x
 
+# The system has no "/bin, /sbin, /lib and others"
+# Here are only "/dev, /proc, /sys ..  and /root - empty"
+# "/abin & /aetc" - are unusual, but both are static busybox linked.
+# So, you can create/mount your custom "/usr", so "/bin,/sbin,/lib" etc can be mounted or linked to usr-friedly "/usr/bin, /usr/sbin, /usr/lib"
+# All others like "/run, /tmp, /var" can be linked, for example to new /usr system like unusual "/usr/log, /usr/tmp, /usr/run & etc".
+
 #https://distfiles.gentoo.org/releases/arm64/autobuilds/20240304T223401Z/stage3-arm64-systemd-mergedusr-20240304T223401Z.tar.xz
+# ^^ Try it
